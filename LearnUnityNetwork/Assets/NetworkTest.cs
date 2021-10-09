@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NetworkTest : MonoBehaviour {
 
-	int myPort = 10000;//端口号
-	string serverIP = "172.16.19.30";//服务器ip
+	int myPort = 16543;//端口号
+	string serverIP = "192.168.3.2";//服务器ip
 	string yourState = "";
 	// Use this for initialization
 	void Start () {
