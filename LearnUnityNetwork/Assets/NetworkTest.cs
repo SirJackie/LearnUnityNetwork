@@ -58,7 +58,7 @@ public class NetworkTest : MonoBehaviour {
 					string2Show = "Greeting from Client!!!";
 				}
 
-				GetComponent<NetworkView>().RPC ("ShowDbgString", RPCMode.All, string2Show);
+				GetComponent<NetworkView>().RPC ("ShowDbgString", RPCMode.Others, string2Show);
 			}
 
 			// ----------------------------------------------------------
