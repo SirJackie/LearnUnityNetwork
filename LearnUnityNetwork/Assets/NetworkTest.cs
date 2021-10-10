@@ -46,24 +46,27 @@ public class NetworkTest : MonoBehaviour {
 			break;
 		}
 
+		nView = new NetworkView ();
+
 		if (Network.peerType != NetworkPeerType.Disconnected && Network.peerType != NetworkPeerType.Connecting) {
 			if (GUILayout.Button ("发送数据")) {
-				nView = new NetworkView ();
+				
 
-				string string2Show = "";
-				if (Network.peerType == NetworkPeerType.Server) {
-					string2Show = "Greeting from Server!!!";
-				} else {
-					string2Show = "Greeting from Client!!!";
-				}
+//				string string2Show = "";
+//				if (Network.peerType == NetworkPeerType.Server) {
+//					string2Show = "Greeting from Server!!!";
+//				} else {
+//					string2Show = "Greeting from Client!!!";
+//				}
 
-				nView.RPC ("ShowDbgString", RPCMode.All, string2Show);
+				nView.RPC ("ShowDbgString", RPCMode.All, "Hello, world!");
 			}
 		}
 	}
 
 	[RPC]
-	void ShowDbgString(string dbgStr){
-		Debug.Log (dbgStr);
+	void ShowDbgString (string text, NetworkMessageInfo info)
+	{
+		Debug.Log(text + " from " + info.sender);
 	}
 }
