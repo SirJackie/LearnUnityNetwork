@@ -6,7 +6,6 @@ public class NetworkTest : MonoBehaviour {
 
 	string ip = "192.168.3.2";
 	string port = "16543";
-	NetworkView nView;
 
 	void OnGUI() {
 
@@ -39,28 +38,30 @@ public class NetworkTest : MonoBehaviour {
 			break;
 
 		case NetworkPeerType.Client:
-			GUILayout.TextField ("已连接。");
+			GUILayout.Label ("已连接。");
 			if (GUILayout.Button ("断开连接/终止服务器")) {
 				Network.Disconnect ();
 			}
 			break;
 		}
 
-		nView = new NetworkView ();
-
 		if (Network.peerType != NetworkPeerType.Disconnected && Network.peerType != NetworkPeerType.Connecting) {
+
+			// ----------------------------------------------------------
+
 			if (GUILayout.Button ("发送数据")) {
-				
 
-//				string string2Show = "";
-//				if (Network.peerType == NetworkPeerType.Server) {
-//					string2Show = "Greeting from Server!!!";
-//				} else {
-//					string2Show = "Greeting from Client!!!";
-//				}
+				string string2Show = "";
+				if (Network.peerType == NetworkPeerType.Server) {
+					string2Show = "Greeting from Server!!!";
+				} else {
+					string2Show = "Greeting from Client!!!";
+				}
 
-				nView.RPC ("ShowDbgString", RPCMode.All, "Hello, world!");
+				GetComponent<NetworkView>().RPC ("ShowDbgString", RPCMode.All, string2Show);
 			}
+
+			// ----------------------------------------------------------
 		}
 	}
 
